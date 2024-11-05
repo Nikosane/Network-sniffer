@@ -41,3 +41,17 @@ def packet_callback(packet):
     if packet.haslayer(Raw):
         raw_data = packet[Raw].load
         print("Raw Data:", raw_data)
+        
+def capture_all_traffic(interface="enp1s0"):
+    """
+    Captures all network traffic on the specified interface.
+
+    Parameters:
+        interface (str): The network interface to capture on (e.g., 'enp1s0' or 'eth0').
+    """
+    print(f"Starting packet capture on interface: {interface}")
+    # Start sniffing on the specified interface
+    sniff(iface=interface, prn=packet_callback, store=False)
+
+# Example usage
+capture_all_traffic(interface="enp1s0")
